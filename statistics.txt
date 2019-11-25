@@ -1,0 +1,251 @@
+Key: 
+R : relevant set
+A : retrieved set
+R&A : 
+
+#####---------------------Employee Database 3.20---------------#############
+
+Sentence:	find Doctor Lin's manager and salary 
+Expected:	Select manages.manager name, works.salary from manages,works where works.employee name = Doctor Lin
+returned:	Select manages.manager name, works.salary from manages,works where works.employee name = Doctor Lin
+				R	A	R&A  
+Attributes		2	2	2	
+tables			2	2	2
+values			1	1	1
+
+
+Sentence:	return the location of Amazon company
+Expected:	select company.company name from company where company.company name = Amazon
+returned:	Select company.city from company
+				R	A	R&A  
+Attributes		1	1	0	
+tables			1	1	1
+values			0	1	0
+
+
+Sentence:	Find the names and cities of residence of all employees who work for First Bank Corporation
+Expected:	select employee.employee name,employee. city from employee,works where employee.employee name = works.employee name and works.company name = First Bank Corporation
+returned:	Select works.company name , company.city from works , company where company.company name = First Bank Corporation
+				R	A	R&A  
+Attributes		2	2	0	
+tables			2	2	1
+values			1	2	0
+
+
+Sentence:	Find all companies located in waco
+Expected:	Select company.company name from company where company.city = waco
+returned:   Select company.company name from company where company.city = waco 
+				R	A	R&A  
+Attributes		1	1	1
+tables			1	1	1
+values			1	1	1
+
+
+Sentence:	find employees who work for First Bank Corporation and Small Bank Corporation
+Expected 1:	select works.employee name from works where works.company name = First Bank Corporation or works.company name = Small Bank Corporation
+Expected 2:	Select employee.employee name from employee , works where works.company name = First Bank Corporation and works.company name = Small Bank Corporation
+returned:	Select employee.employee name from employee , works where works.company name = First Bank Corporation and works.company name = Small Bank Corporation
+Assumped:	Ignored "and , or " condition
+				R	A	R&A			R	A	R&A  
+Attributes		1	1	1			1	1	1
+tables			2	1	1			2	2	2
+values			2	2	2			2	2	2
+
+
+Sentence:	Find the salaries of employees who work at First Bank Corporation
+Expected:	Select works.salary from works where works.company name = First Bank Corporation
+returned:   Select works.salary from works where works.company name = First Bank Corporation
+				R	A	R&A  
+Attributes		1	1	1
+tables			1	1	1
+values			1	1	1
+
+
+						Optimized						Valid
+				precision 		Recall		|	precision 		Recall
+Attributes		62.50%			62.50%		| 	62.50%			62.50%				
+tables			75.00%			66.67%		|	88.88%			88.88%
+values			62.50%			83.33%		|	62.50%			83.33%
+
+
+
+#####---------------Accident Database---------------------#############
+
+Sentence:	find car owners and the type of car they own
+Expected:	Select car.possessor, car.model from car 
+returned:	Select person.name , car.model from person,car
+				R	A	R&A  
+Attributes		2	2	1
+tables			1	2	1
+values			0	0	0
+
+Sentence:	find all catastrophes
+Expected:	Select accident.report from accident
+returned:	Select accident.report from accident
+				R	A	R&A  
+Attributes		1	1	1
+tables			1	1	1
+values			0	0	0
+
+Sentence:	find all accidents in Dallas
+Expected:	Select accident.report from accident where  accident.location = Dallas
+returned:	Select accident.report from accident where  = Dallas
+				R	A	R&A  
+Attributes		1	1	1
+tables			1	1	1
+values			1	1	0
+
+
+Sentence:	find the damage amount of drivers who live in texas
+Expected:	Select participated.damage amount from participated,person where person.address = texas
+returned:	Select participated.damage amount from participated where participated.driver id = texas
+				R	A	R&A  
+Attributes		1	1	1
+tables			2	1	1
+values			1	1	0
+
+
+				precision 		Recall
+Attributes		80.00%			80.00%			
+tables			80.00%			80.00%
+values			00.00%			00.00%
+
+**********University Database*****************************
+Sentence:	Find the titles of courses in the Computer Science department that have 3 credits
+Expected:	Select course.title from course  where dept name = Computer Science and course.credits = 3
+returned:	Select course.title from course , student where course.course id = department and course.credits = credits
+				R	A	R&A  
+Attributes		1	1	1
+tables			1	2	1
+values			2	2	0
+
+Sentence:	Find the  salary of the instructor who teaches CSI511
+Expected:	Select instructor.salary from instructor , teaches where teaches.course id = CSI511
+returned:	Select instructor.salary from instructor , teaches where teaches.year = CSI511
+				R	A	R&A  
+Attributes		1	1	1
+tables			2	2	2
+values			1	1	0
+
+Sentence:	Find all students and their advisors
+Expected:	Select student.name , instructor.name from student , advisor,instructor where  = student.ID = advisor.s ID and instructor.ID = advisor.i ID
+returned:	Select student.name , advisor.s ID from student , advisor where  = their
+				R	A	R&A  
+Attributes		2	2	1
+tables			3	2	2
+values			2	1	0
+
+
+Sentence:	find all courses offered in semester 2
+Expected:	Select section.course id from section where  semester = 2
+returned:	Select course.credits from course where time slot.day = semester
+				R	A	R&A  
+Attributes		1	1	0
+tables			1	1	0
+values			1	1	0
+
+Sentence:	find the size of classroom A
+Expected:	select classroom.capacity from classroom where classroom.room number = A
+returned:	Select section.room number from section
+				R	A	R&A  
+Attributes		1	1	0
+tables			1	1	0
+values			1	0	0
+
+				precision 		Recall
+Attributes		50.00%			50.00%			
+tables			80.00%			80.00%
+values			62.50%			62.50%	
+
+*********************Figure 3.19*******************************
+Sentence:	Find all customers of the bank who have an account
+Expected:	Select customer.customer name from customer , depositor where depositor.customer name = customer.customer name
+returned:	Select customer.customer name from customer , depositor where depositor.account number = account
+				R	A	R&A  
+Attributes		1	1	1
+tables			2	2	2
+values			1	1	0
+
+********
+Sentence:	Find the names of all customers who live on the same street and in the same city as Smith
+Expected:	Select customer.customer name from customer where customer.customer city = city and customer.customer name = Smith
+returned:	Select customer.customer name from customer where customer.customer city = city and customer.customer name = Smith
+				R	A	R&A  
+Attributes		1	1	1
+tables			1	1	1
+values			1	1	1
+
+
+Sentence:	Find the names of all branches and customers who have an account in that branch
+Expected:	Select branch.branch name,customer.customer name from branch , customer ,account,depositor where branch.branch name = account. branch name and account.account number = depositor. account number and depositor.customer name = customer.customer name
+returned:	Select customer.customer name from customer , depositor where depositor.account number = account and depositor.account number = branch
+				R	A	R&A  
+Attributes		2	1	1
+tables			4	2	2
+values			3	2	0
+
+
+Sentence:	find each borrower and how much they have borrowed
+Expected:	Select borrower.customer name, loan.amount from borrower,loan where borrower.loan number = loan.loan number
+returned:	Select borrower.customer name , account.balance from borrower , account
+				R	A	R&A  
+Attributes		2	2	1
+tables			2	2	1
+values			1	0	0
+
+Sentence:	find depositors and their account number and balance
+Expected:	Select depositor.customer name, depositor.account number,account.balance from depositor,account where depositor.account number = account.account number
+returned:	Select depositor.customer name , account.account number , branch.branch name from depositor , account , branch where  = their
+				R	A	R&A  
+Attributes		3	3	1
+tables			2	3	2
+values			1	1	0
+
+				precision 		Recall
+Attributes		62.50%			55.55%			
+tables			72.72%			80.00%
+values			20.00%			14.29%	
+
+**********login Database*****************************
+Sentence:	find usernames and addresses
+Expected:	Select login.username , contact.zip code from login , contact
+returned:	Select login.username , contact.zip code from login , contact
+				R	A	R&A  
+Attributes		2	2	2
+tables			2	2	2
+values			0	0	0
+
+Sentence:	find the names and ages of the people in the database
+Expected:	Select personal.fname, personal.age from personal
+returned:	Select contact.phone 1 , personal.age from contact , personal where contact.address line 1 = database
+				R	A	R&A  
+Attributes		2	2	1
+tables			1	2	1
+values			0	1	0
+
+Sentence:	find the contact details of persons abc
+Expected:	Select contact.address line 1 from contact,person where person.ID = contact.person ID
+returned:	Select contact.address line 1 from contact
+				R	A	R&A  
+Attributes		1	1	1
+tables			2	1	1
+values			1	0	0
+
+Sentence:	find the firstname and lastname of each person
+Expected:	select person.fname,person.lname
+returned:	Select contact.phone 1 from contact
+				R	A	R&A  
+Attributes		2	1	0
+tables			0	1	0
+values			0	0	0
+
+				precision 		Recall
+Attributes		66.67%			57.14%			
+tables			66.67%			80.00%
+values			00.00%			00.00%	
+
+**********Overall*****************************
+				precision 				Recall
+Attributes		63.63%					60.00%			
+tables			75.00% / 76.31%			73.68% / 76.31%	
+values			28.57%					26.08%	

@@ -1,0 +1,41 @@
+#####---------------------3.20---------------#############
+find Doctor Lin's manager and salary
+return the location of Amazon company
+Find the names and cities of residence of all employees who work for First Bank Corporation.
+Find the names, street addresses, and cities of residence of all employees who work for First Bank Corporation
+Find all companies located in waco.
+find employees who work for First Bank Corporation and Small Bank Corporation
+Find the salaries of employees who work at First Bank Corporation.
+
+
+#####------------------------------------#############
+find car owners
+find all catastrophes
+find drivers, cars and day of accident
+find all accidents in Dallas
+find all casualties that happend in Dallas
+
+
+**********University Database*****************************
+Find the titles of courses in the Computer Sci. department that have 3 credits.
+Find the  salary of the instructor who teaches computer science
+Find all students and their advisors
+Find the enrollment of each section that was offered in Autumn 2009.
+find all courses offered in semester 2
+find the size of classroom A
+
+
+*********************Figure 3.19*******************************
+Find all customers of the bank who have an account
+Find the names of all customers who live on the same street and in the same city as Smith.
+Find the names of all branches with customers who have an account in the bank and who live in Harrison
+
+
+**********login Database*****************************
+find usernames and addresses
+find the names and ages of the people in the database
+find the contact details of persons abc
+find the firstname and lastname of each person
+
+
+java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000

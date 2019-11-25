@@ -1,0 +1,40 @@
+
+dbaseSchema = {'employee':["employee name","street", "city"],
+               'works':['employee name','company name','salary'],
+               'company':['company name','city'],
+               'manages':["employee name",'manager name']}
+
+'''
+dbaseSchema = { 'person':[ "driver id", "name", "address"],
+                'car' : ['possessor','license', 'model', 'year',"driver id"],
+                'accident': ['report', 'number', 'date', 'location',"driver id"],
+                'participated': ['report number', 'license', 'driver id', 'damage amount']}
+
+
+dbaseSchema = { 'classroom':["building", "room number", "capacity"],
+                'department':['dept name', "building","budget"],
+                'course':['course id', 'title', 'dept name', 'credits'],
+                'instructor':['ID', 'name', 'dept name', 'salary'],
+                'section':['course id', 'sec id', 'semester', 'year', 'building', 'room number', 'time slot id'],
+                'teaches':['ID', 'course id', 'sec id', 'semester', 'year'],
+                'student':['ID', 'name', 'dept name', 'tot cred'],
+                'takes':['ID', 'course id', 'sec id', 'semester', 'year', 'grade'],
+                'advisor':['s ID', 'i ID'],
+                'time slot':['time slot id', 'day', 'start time', 'end time'],
+                'prereq':['course id', 'prereq id']}
+                
+    
+dbaseSchema = { 'branch':["branch name", "branch city", "assets"],
+                'customer':["customer name", "customer street", "customer city"],
+                'loan':["loan number", "branch name", "amount"],
+                'borrower':["customer name", "loan number"],
+                'account':["account number", "branch name", "balance"],
+                'depositor':["customer name", "account number"]}
+                
+
+dbaseSchema = { 'personal':["ID","fname", "lname", "age"],
+                'contact':["phone 1", "phone 2", "address line 1","address line 2","zip code","person ID"],
+                'login':["username", "password"]}
+				
+				
+Doctor Lin vs Dr. Lin				
